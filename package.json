@@ -47,7 +47,8 @@
     "start": "ts-node -P ./tsconfig.dev.json test/common/server.ts",
     "start:node": "ts-node -P ./tsconfig.dev.json -T test/node/index.ts",
     "build": "cross-env NODE_ENV=production rollup -c",
-    "cleanPublish": "yarn test && clean-publish"
+    "cleanPublish": "yarn test && clean-publish",
+    "prepare": "npm run build"
   },
   "keywords": [
     "javascript",

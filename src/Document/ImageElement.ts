@@ -97,7 +97,7 @@ export default class ImageElement extends RenderedElement {
 				}
 			);
 
-			v.resize(width, height, 'none');
+			v.resize(width, height, this.getAttribute('preserveAspectRatio').getString());
 			void v.render();
 		} else {
 			const image = this.image as CanvasImageSource;
