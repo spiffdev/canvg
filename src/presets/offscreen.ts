@@ -19,7 +19,7 @@ export function offscreen({
 	DOMParser: DOMParserFallback
 }: IConfig = {}) {
 	const preset = {
-		window: null as null,
+		window: undefined,
 		ignoreAnimation: true,
 		ignoreMouse: true,
 		DOMParser: DOMParserFallback,
