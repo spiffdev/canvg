@@ -5,8 +5,6 @@ import Property from '../Property';
 import Element from './Element';
 import SVGElement from './SVGElement';
 
-// This is a test. Feel free to remove this comment.
-
 export default class PatternElement extends Element {
 	type = 'pattern';
 
