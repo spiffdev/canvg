@@ -13,8 +13,13 @@ export default class PatternElement extends Element {
 		_: Element,
 		parentOpacityProp: Property
 	) {
-		const width = this.getStyle('width').getPixels('x', true);
-		const height = this.getStyle('height').getPixels('y', true);
+		const styleWidth = this.getStyle('width').getPixels('x', true);
+		const styleHeight = this.getStyle('height').getPixels('y', true);
+		const nonRepeatingWidth = this.getAttribute('data-frame-width');
+		const nonRepeatingHeight = this.getAttribute('data-frame-height');
+		const width = nonRepeatingWidth.hasValue() ? nonRepeatingWidth.getPixels('x', true) : styleWidth;
+		const height = nonRepeatingHeight.hasValue() ? nonRepeatingHeight.getPixels('y', true) : styleHeight;
+		const disableRepeat = nonRepeatingWidth.hasValue() && nonRepeatingHeight.hasValue();
 		// render me using a temporary svg element
 		const patternSvg = new SVGElement(
 			this.document,
@@ -26,6 +31,7 @@ export default class PatternElement extends Element {
 			'viewBox',
 			this.getAttribute('viewBox').getValue()
 		);
+
 		patternSvg.attributes.width = new Property(
 			this.document,
 			'width',
@@ -36,6 +42,7 @@ export default class PatternElement extends Element {
 			'height',
 			`${height}px`
 		);
+
 		patternSvg.attributes.transform = new Property(
 			this.document,
 			'transform',
@@ -80,7 +87,7 @@ export default class PatternElement extends Element {
 			}
 		}
 
-		const pattern = ctx.createPattern(patternCanvas, 'repeat');
+		const pattern = ctx.createPattern(patternCanvas, disableRepeat ? 'no-repeat' : 'repeat');
 
 		return pattern;
 	}

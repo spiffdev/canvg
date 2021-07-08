@@ -1,6 +1,6 @@
 {
   "name": "canvg",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "JavaScript SVG parser and renderer on Canvas.",
   "authors": [
     {
@@ -48,7 +48,7 @@
     "start:node": "ts-node -P ./tsconfig.dev.json -T test/node/index.ts",
     "build": "cross-env NODE_ENV=production rollup -c",
     "cleanPublish": "yarn test && clean-publish",
-    "prepare": "npm run build"
+    "prepare": "yarn run build"
   },
   "keywords": [
     "javascript",
